@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="img/jpg" href="">
+    <title>Round Robin Scheduler</title>
+  </head>
+
+<body class="wrapper">
+
+  
+    <main class="main-container">
+
+    <h2>Round-Robin Scheduler Animation</h2>
+    
+    <div class="section two-column">
+      <div id="cpuQueue">
+        <div>
+          <h4>Ready Queue</h4>
+          <div id="rqBox" class="box"></div>
+        </div>
+        <div>
+          <h4>CPU</h4>
+          <div id="cpuBox" class="box">Idle</div>
+        </div>
+        
+      </div>
+
+      <div>
+        <label>Time Quantum: <input type="number" id="timeQuantum" min="1" value="2"></label>
+        <button type="button" id="runScheduler">Run Scheduler</button>
+      </div>
+    </div>
+    
+    
+    <div class="section">
+      <h4>Gantt Chart</h4>
+      <div id="gantt"></div>
+      <div id="timeLabels"></div>
+    </div>
+    
+     <div class="section">
+      <form id="processForm">
+        <table class="table-wrapper">
+          <tr>
+            <th>Process ID</th>
+            <th>Arrival Time</th>
+            <th>Burst Time</th>
+          </tr>
+          <tr>
+            <td><input type="text" name="pid" required></td>
+            <td><input type="number" name="arrival" min="0" required></td>
+            <td><input type="number" name="burst" min="1" required></td>
+          </tr>
+        </table>
+        <button type="button" id="addProcess">Add Another Process</button>
+        <br><br>
+      </form>
+    </div>
+
+    <script src="scheduler.js"></script>
+
+  </main>
+  
+  
+
+</body>
+</html>
