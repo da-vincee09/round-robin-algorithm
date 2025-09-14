@@ -40,7 +40,6 @@ document.getElementById('addProcess').addEventListener('click', () => {
 // Event listener for executing the runScheduler button in the HTML
 document.getElementById('runScheduler').addEventListener('click', async () => {
   
-  processCount = 0; // reset for new run
   // Clear previous Gantt chart and stats
   document.getElementById('gantt').innerHTML = '';
   document.getElementById('timeLabels').innerHTML = '';
