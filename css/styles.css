@@ -519,8 +519,9 @@ button:active {
     font-size: 1.6rem;
   }
 
-  body h1{
-    line-height: 0rem;
+  body h2{
+    font-size: 2.5rem;
+    line-height: 2.5rem;
   }
 
   .main-container {
@@ -542,8 +543,6 @@ button:active {
     max-width: 600px;
     max-height: 700px;
   }
-
-  
 
 
 }
