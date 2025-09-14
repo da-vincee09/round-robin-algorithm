@@ -29,7 +29,7 @@
         
       </div>
 
-      <div>
+      <div class="two-column2">
         <label>Time Quantum: <input type="number" id="timeQuantum" min="1" value="2"></label>
         <button type="button" id="runScheduler">Run Scheduler</button>
       </div>
@@ -38,9 +38,16 @@
     
     <div class="section">
       <h4>Gantt Chart</h4>
-      <div id="gantt"></div>
+      <div id="ganttWrapper">
+        <div id="gantt"></div>
+      </div>
+
       <div id="timeLabels"></div>
     </div>
+
+    <div id="tooltip"></div>
+
+
     
      <div class="section">
       <form id="processForm">

@@ -127,27 +127,50 @@ function updateRQ(queue) {
   });
 }
 
-// Function for adding  process unit in the gantt chart
-function addProcessUnit(pid) {
 
-  // Gets the element with a gantt id
+
+function addProcessUnit(pid, startTime, endTime) {
   const gantt = document.getElementById('gantt');
-
-  // Creates an element div
   const div = document.createElement('div');
-  div.className = 'process'; // div has a class named process
-  div.style.width = `${UNIT_WIDTH}px`; // Style of the div
+  div.className = 'process';
+  div.style.width = `${UNIT_WIDTH}px`;
 
-  // If !pid then idle
   if (!pid) {
     div.innerText = 'Idle';
     div.style.backgroundColor = '#ccc';
-  } else { // Else randomizes a color if the process is not null
+  } else {
     div.innerText = pid;
     div.style.backgroundColor = colors[pid] || (colors[pid] = '#' + Math.floor(Math.random()*16777215).toString(16));
+
+    const tooltip = document.getElementById('tooltip');
+
+    // Hover shows tooltip
+    div.addEventListener('mouseenter', (e) => {
+      tooltip.style.display = 'block';
+      tooltip.innerHTML = `Process: <strong>${pid}</strong><br>Start: ${startTime}<br>End: ${endTime}`;
+      tooltip.style.left = e.pageX + 10 + 'px';
+      tooltip.style.top = e.pageY + 10 + 'px';
+    });
+
+    div.addEventListener('mousemove', (e) => {
+      tooltip.style.left = e.pageX + 10 + 'px';
+      tooltip.style.top = e.pageY + 10 + 'px';
+    });
+
+    div.addEventListener('mouseleave', () => {
+      tooltip.style.display = 'none';
+    });
+
+    // Optional: click to lock tooltip
+    div.addEventListener('click', () => {
+      tooltip.style.display = 'block';
+      tooltip.innerHTML = `Process: <strong>${pid}</strong><br>Start: ${startTime}<br>End: ${endTime}`;
+    });
   }
-  gantt.appendChild(div); /// Append the div
+
+  gantt.appendChild(div);
 }
+
 
 // Function for animation
 function animateToGantt(pid, time) {
@@ -189,23 +212,22 @@ function animateToGantt(pid, time) {
 
   setTimeout(() => {
     clone.remove();
-    addProcessUnit(pid);
+      addProcessUnit(pid, time, time + 1);
   }, 500);
 }
 
 // Function for adding time labels
 function addTimeLabels(totalTime) {
-
-  // Get the element with an id of time labels
   const container = document.getElementById('timeLabels');
-
   container.innerHTML = '';
 
-  // Maps the seconds below using the 50px width
   for (let t = 0; t <= totalTime; t++) {
     const span = document.createElement('span');
     span.innerText = t;
-    span.style.width = `${UNIT_WIDTH}px`; // align with gantt block
+    span.style.flex = `0 0 ${Math.round(UNIT_WIDTH)}px`; // match Gantt block
+    span.style.display = 'inline-block';
+    span.style.textAlign = 'center';
+    span.style.fontFamily = 'monospace';
     container.appendChild(span);
   }
 }
