@@ -368,9 +368,9 @@ async function roundRobin(processes, timeQuantum){
   // The general stats
   averagesDiv.innerHTML = `
     CPU Utilization: <strong>${cpuUtil}%</strong> | 
-    Throughput: <strong>${throughput}</strong> processes/unit time | 
-    ATAT: <strong>${avgTAT}</strong> | 
-    AWT: <strong>${avgWT}</strong>
+    Throughput: <strong>${throughput}</strong> ms | 
+    ATAT: <strong>${avgTAT}</strong> ms | 
+    AWT: <strong>${avgWT}</strong> ms
   `;
 
   // Appends the averagesDiv
